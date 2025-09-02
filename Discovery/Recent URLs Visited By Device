@@ -1,0 +1,6 @@
+// Displays all sites visited by a user in the past period
+DeviceNetworkEvents
+|  where DeviceName == "device_name"
+|  where InitiatingProcessFileName contains "msedge.exe" // You can modify the msedge.exe to the executable of any browser you want to review e.g. chrome.exe, firefox.exe
+|  project Timestamp, RemoteUrl, RemoteIP
+sort by Timestamp desc
