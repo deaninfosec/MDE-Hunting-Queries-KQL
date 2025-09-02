@@ -1,0 +1,5 @@
+// Tracks all users that access pastebin
+// Shoud be scheduled to run in near real-time
+DeviceNetworkEvents
+|  where RemoteUrl contains "pastebin"
+|  project Timestamp, DeviceName, RemoteUrl, LocalIP, InitiatingProcessFileName, InitiatingProcessId, InitiatingProcessAccountName
