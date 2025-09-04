@@ -22,6 +22,7 @@ Each folder represents a category mapped (where possible) to the [MITRE ATT&CK](
 - `Initial_Access/` — Phishing, exploit use, credential abuse
 - `Persistence/` — Registry keys, scheduled tasks, startup folders
 - `Privilege_Escalation/` — UAC bypass, token manipulation
+- `Execution/` — Command and Scripting, user execution
 - `Defense_Evasion/` — EDR tampering, obfuscated code, log deletion
 - `Credential_Access/` — LSASS dumps, Mimikatz, SAM hive access
 - `Discovery/` — System, domain, and network recon
