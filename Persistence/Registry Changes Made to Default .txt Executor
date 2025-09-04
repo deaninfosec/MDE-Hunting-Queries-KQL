@@ -1,0 +1,9 @@
+// Identifies malware persistence where registry is modified to run malware each time user interacts with .txt file
+// General text file applications
+let allowed_editors = dynamic (["notepad.exe","notepad++.exe","code.exe","sublime_text.exe","wordpad.exe","write.exe"])
+// Identify non-listed processes run when .txt is clicked
+DeviceProcessEvents
+| where InitiatingProcessFileName == "explorer.exe"
+| where ProcessCommandLine matches regex @"(?i)\.txt(\s|$|\"")"
+| tolower(FileName) !in (allowed_editors)
+// Review FileName, FolderPath, SHA256, ProcessVersionInfoCompanyName to confirm if action is malicious or not.
