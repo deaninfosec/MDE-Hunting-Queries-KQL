@@ -1,0 +1,9 @@
+DeviceRegistryEvents
+| where ActionType in ("RegistryValueSet","RegistryValueCreated")
+| where RegistryKey has @"\CurrentVersion\Explorer\RunMRU"
+| where RegistryValueName != "MRUList"
+| extend RunCmd = trim(" ", replace(@'\x00','', tostring(RegistryValueData)))
+// first token the user typed (e.g., cmd, services.msc, control, calc, path.exe, \\server\share\tool.exe)
+| extend Token = tolower(trim(@" """, tostring(extract(@"^([^\s""']+)", 1, RunCmd))))
+| extend TokenExe = iif(Token endswith ".exe", Token, strcat(Token, ".exe"))
+| order by Timestamp desc
