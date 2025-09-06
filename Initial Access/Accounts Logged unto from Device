@@ -1,0 +1,12 @@
+// This query filters through Windows logs for successful logons made from a device,
+// It is necessary to have a complete view of this during potential account compromise investigations
+// Successful logons from the device may show other unrecognized IP addresses which will be investigated
+SecurityEvent
+// Query the period within which the unrecognized logon was made
+// Use the Timestamp option if needed
+| where TimeGenerated between (datetime(2025-09-06 13:00) .. datetime(2025-09-06 15:00))
+// Review the successful logons from the IP address
+| where EventID == "4624"
+| where DeviceName == "xx.xxx.xxx.xx"
+// Display the results from the most recent successful logon
+| sort by TimeGenerated desc
