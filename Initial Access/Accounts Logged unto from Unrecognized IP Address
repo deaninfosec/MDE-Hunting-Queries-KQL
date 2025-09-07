@@ -1,10 +1,6 @@
 // This query filters through Windows logs for successful logons made from an unrecognized IP address,
-// It is necessary to have a complete view of this during potential account compromise investigations.
 SecurityEvent
-// Query the period within which the unrecognized logon was made
 | where TimeGenerated between (datetime(2025-09-06 13:00) .. datetime(2025-09-06 15:00))
-// Review the successful logons from the IP address
 | where EventID == "4624"
 | where IpAddress == "xx.xxx.xxx.xx"
-// Display the results from the most recent successful logon
 | sort by TimeGenerated desc
