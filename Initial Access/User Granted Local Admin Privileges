@@ -1,0 +1,5 @@
+// This query identifies when a user is granted local admin privileges on their domain-joined device.
+DeviceEvents
+| where ActionType == "UserAccountAddedToLocalGroup"
+| where InitiatingProcessAccountDomain == "domain_name"
+// Finetune InitiatingProcessAccountName to not contain names of users known to have local admin privileges
