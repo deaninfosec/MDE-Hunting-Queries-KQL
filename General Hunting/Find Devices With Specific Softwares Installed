@@ -1,0 +1,5 @@
+DeviceTvmSoftwareInventory
+| where SoftwareName contains "malicious_app"
+// Based on the information shown, you can choose to filter down to the specific device or user you're searching for
+// If checking for multiple softwares, you can use the below. Remove the comments
+// | where SoftwareName contains "app1" or SoftwareName contains "app2" or SoftwareName contains "app3"
