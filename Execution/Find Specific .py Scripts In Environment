@@ -1,0 +1,5 @@
+// This query hunts for the execution of specific python scripts. It searches for them via ProcessCommandLine.
+// This query can further be enhanced to find when these scripts were created and if they were run immediately (using kind = inner)
+DeviceProcessEvents
+| where ProcessCommandLine has "malicious_script.py"
+| order by Timestamp desc
